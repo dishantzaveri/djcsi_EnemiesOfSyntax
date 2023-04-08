@@ -23,7 +23,7 @@ export const addGenImages = async (req, res) => {
     const gen_img = [];
 
     req.files.forEach((element) => {
-      gem_img.push(element.filename);
+      gen_img.push(element.filename);
     });
 
     const getImage = await Image.updateOne({ _id: imageId }, { $push: { tag, gen_img } });
