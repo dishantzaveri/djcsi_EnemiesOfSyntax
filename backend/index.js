@@ -12,6 +12,7 @@ import authRoutes from './routes/auth.routes.js';
 import userRoutes from './routes/users.routes.js';
 import postRoutes from './routes/posts.routes.js';
 import hostRoutes from './routes/host.routes.js';
+import paintRoutes from './routes/paint.routes.js';
 import { register } from './controllers/auth.controller.js';
 import { createPost } from './controllers/posts.controller.js';
 import { verifyToken } from './middleware/auth.js';
@@ -65,6 +66,7 @@ app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
 app.use('/posts', postRoutes);
 app.use('/host', hostRoutes);
+app.use('/paint', paintRoutes);
 
 const getRoom = async (room) => {
   try {
