@@ -26,7 +26,7 @@ export const addGenImages = async (req, res) => {
       gen_img.push(element.filename);
     });
 
-    const getImage = await Image.updateOne({ _id: imageId }, { $push: { tag, gen_img } });
+    const getImage = await Image.updateOne({ _id: imageId }, { $push: { gen_img: { tag, imgs: gen_img } } });
     console.log(getImage);
     res.status(200).json(getImage);
   } catch (err) {

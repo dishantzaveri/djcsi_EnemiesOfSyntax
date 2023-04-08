@@ -10,8 +10,12 @@ const ImageSchema = new mongoose.Schema(
       type: String
     },
     gen_img: {
-      type: Array,
-      default: []
+      tag: {
+        type: String
+      },
+      imgs: {
+        type: ArraY
+      }
     }
   },
   { timestamps: true }
