@@ -14,7 +14,7 @@ const LoginPage = () => {
   });
   const login = () => {
     console.log(data);
-    axios.post('http://localhost:3001/auth/login', data).then((res) => {
+    axios.post('https://9aa7-2402-3a80-1863-57f8-5466-8afa-78aa-48d4.ngrok-free.app/auth/login', data).then((res) => {
         console.log(res);
         const token = res.data.token;
         const user = res.data.user;

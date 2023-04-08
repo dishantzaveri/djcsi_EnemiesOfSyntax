@@ -14,7 +14,7 @@ const SignupPage = () => {
   });
   const register = () => {
     console.log(data);
-    axios.post('http://localhost:3001/auth/register', data).then((res) => {
+    axios.post('https://9aa7-2402-3a80-1863-57f8-5466-8afa-78aa-48d4.ngrok-free.app/auth/register', data).then((res) => {
       navigate('/login')
     });
   }
