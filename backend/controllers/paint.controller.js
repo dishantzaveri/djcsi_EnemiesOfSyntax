@@ -1,4 +1,4 @@
-import asianPaintsCalculator from '../utils/scrapeAsianPaints.js';
+import asianPaintsCalculator from '../utils/asianPaintsCalculator.js';
 
 export const getAsianPaintsCost = async (req, res) => {
   try {
