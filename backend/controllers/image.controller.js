@@ -26,7 +26,7 @@ export const addGenImages = async (req, res) => {
       songsArray.push(element.originalname);
     });
 
-    const getImage = await Image.findById(imageId);
+    const getImage = await Image.updateOne(imageId, { $push: { gen_img } });
     console.log(getImage);
     res.status(200).json(getImage);
   } catch (err) {
