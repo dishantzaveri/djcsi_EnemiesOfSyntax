@@ -3,7 +3,7 @@ import puppeteer from 'puppeteer';
 const ASIAN_CHECKBOX = '.form-global__custom-element.form-radio-input__custom-element.align-middle';
 const ASIAN_INPUT = '.planning-to-do input.form-global__field.form-text-input__field';
 const ASIAN_PAINTS_URL = 'https://www.asianpaints.com/resources/tools/paint-budget-calculator.html';
-const ASIAN_SUBMIT = '.ctaComp.calculate-now.track_calculate';
+const ASIAN_SUBMIT = '.ctaText.text-uppercase.js-calculate-now-ladingpage-btn';
 const ASIAN_P_TITLE = '.estimation-details.planning-to-do.mb-0 .mb-4';
 const ASIAN_P_DESC = '.mb-0.prod-description';
 const ASIAN_P_QC = '.budget-estimation.d-flex.justify-content-between .mt-2';
@@ -39,11 +39,11 @@ export default async function asianPaintsCalculator(typeOfProject, paintSpacing,
 
   await page.$eval(ASIAN_INPUT, (el, value) => (el.value = value), carpetArea);
 
+  await page.waitForSelector(ASIAN_SUBMIT);
   // Click the submit button
   const submit = await page.$(ASIAN_SUBMIT);
   await submit.click();
-
-  // await page.waitForNavigation();
+  await page.evaluate((el) => el.click(), submit);
 
   await page.waitForSelector(ASIAN_P_TITLE);
   await page.waitForSelector(ASIAN_P_DESC);
