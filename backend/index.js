@@ -124,9 +124,11 @@ app.get('/video-call/:id', async function (req, res) {
 app.use('/', (req, res) => {
   res.send('Welcome to the API');
 });
+const PORT = process.env.PORT || 6001;
+
+const server = app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
 
 /* MONGOOSE SETUP */
-const PORT = process.env.PORT || 6001;
 mongoose
   .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
@@ -134,7 +136,6 @@ mongoose
   })
   .then(() => {
     console.log('MongoDB connected');
-    app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
 
     /* ADD DATA ONE TIME */
     // User.insertMany(users);
