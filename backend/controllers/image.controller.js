@@ -7,7 +7,7 @@ export const addRefImage = async (req, res) => {
 
     const newUser = new Image({
       userId,
-      ref_img: req.file.originalname
+      ref_img: req.file.filename
     });
     const savedImage = await newUser.save();
     res.status(201).json(savedImage);
@@ -18,15 +18,15 @@ export const addRefImage = async (req, res) => {
 
 export const addGenImages = async (req, res) => {
   try {
-    const { imageId } = req.body;
+    const { imageId, tag } = req.body;
 
     const gen_img = [];
 
     req.files.forEach((element) => {
-      songsArray.push(element.originalname);
+      songsArray.push(element.filename);
     });
 
-    const getImage = await Image.updateOne(imageId, { $push: { gen_img } });
+    const getImage = await Image.updateOne(imageId, { $push: { tag, gen_img } });
     console.log(getImage);
     res.status(200).json(getImage);
   } catch (err) {
