@@ -22,14 +22,6 @@ const UserSchema = new mongoose.Schema(
     friends: {
       type: Array,
       default: []
-    },
-    images: {
-      ref: {
-        type: 'String'
-      },
-      generated: {
-        type: 'Array'
-      }
     }
   },
   { timestamps: true }

@@ -19,6 +19,7 @@ import User from './models/User.js';
 import Post from './models/Post.js';
 import { users, posts } from './data/index.js';
 import fetch from 'node-fetch';
+import { addGenImages, addRefImage } from './controllers/image.controller.js';
 
 const headers = {
   Accept: 'application/json',
@@ -31,7 +32,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 dotenv.config();
 const app = express();
-app.use(express.json());
+// app.use(express.json());
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: 'cross-origin' }));
 app.use(morgan('common'));
@@ -54,8 +55,10 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 /* ROUTES WITH FILES */
-app.post('/auth/register', upload.single('picture'), register);
-app.post('/posts', verifyToken, upload.single('picture'), createPost);
+app.post('/auth/register', register);
+app.post('/posts', upload.single('picture'), createPost);
+app.post('/user/ref_img', upload.single('picture'), addRefImage);
+app.post('/user/gen_imgs', upload.array('pictures'), addGenImages);
 
 /* ROUTES */
 app.use('/auth', authRoutes);
