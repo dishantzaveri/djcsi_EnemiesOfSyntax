@@ -23,10 +23,10 @@ export const addGenImages = async (req, res) => {
     const gen_img = [];
 
     req.files.forEach((element) => {
-      songsArray.push(element.filename);
+      gem_img.push(element.filename);
     });
 
-    const getImage = await Image.updateOne(imageId, { $push: { tag, gen_img } });
+    const getImage = await Image.updateOne({ _id: imageId }, { $push: { tag, gen_img } });
     console.log(getImage);
     res.status(200).json(getImage);
   } catch (err) {
