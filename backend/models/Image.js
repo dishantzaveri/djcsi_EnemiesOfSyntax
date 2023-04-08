@@ -14,7 +14,7 @@ const ImageSchema = new mongoose.Schema(
         type: String
       },
       imgs: {
-        type: ArraY
+        type: Array
       }
     }
   },
