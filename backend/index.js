@@ -21,6 +21,7 @@ import Post from './models/Post.js';
 import { users, posts } from './data/index.js';
 import fetch from 'node-fetch';
 import { addGenImages, addRefImage } from './controllers/image.controller.js';
+import axios from 'axios';
 
 const headers = {
   Accept: 'application/json',
@@ -60,6 +61,53 @@ app.post('/auth/register', register);
 app.post('/posts', upload.single('picture'), createPost);
 app.post('/user/ref_img', upload.single('picture'), addRefImage);
 app.post('/user/gen_imgs', upload.array('pictures'), addGenImages);
+// app.post('/user/generate', upload.single('picture'), async (req, res) => {
+//   console.log(req.file);
+//   const { room, site, theme } = req.body;
+
+//   const data = JSON.stringify({
+//     room,
+//     site,
+//     theme,
+//     imageUrl: req.file.path
+//   });
+
+//   let config = {
+//     method: 'post',
+//     maxBodyLength: Infinity,
+//     url: 'https://www.roomsgpt.io/api/generate3',
+//     headers: {
+//       '': 'authority: www.roomsgpt.io, method: POST, path: /api/generate3, scheme: https',
+//       accept: ' */*',
+//       'accept-encoding': ' gzip, deflate, br',
+//       'accept-language': ' en-GB,en;q=0.6',
+//       'content-length': ' 327296',
+//       'content-type': ' application/json',
+//       origin: ' https://www.roomsgpt.io',
+//       referer: ' https://www.roomsgpt.io/roomgpt',
+//       'sec-ch-ua': ' "Brave";v="111", "Not(A:Brand";v="8", "Chromium";v="111"',
+//       'sec-ch-ua-mobile': ' ?0',
+//       'sec-ch-ua-platform': ' "Linux"',
+//       'sec-fetch-dest': ' empty',
+//       'sec-fetch-mode': ' cors',
+//       'sec-fetch-site': ' same-origin',
+//       'sec-gpc': ' 1',
+//       'user-agent':
+//         ' Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36'
+//     },
+//     data: data
+//   };
+
+//   const result = await axios(config)
+//     .then(function (response) {
+//       console.log(JSON.stringify(response.data));
+//       res.status(201).status(response.data);
+//     })
+//     .catch(function (error) {
+//       console.log(error);
+//       res.status(500).status(error);
+//     });
+// });
 
 /* ROUTES */
 app.use('/auth', authRoutes);

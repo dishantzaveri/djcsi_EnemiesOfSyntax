@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-const SignupPage = () => {
+const PaintCost = () => {
   const navigate = useNavigate();
   const [data, setData] = useState({
     name: '',
@@ -21,12 +21,12 @@ const SignupPage = () => {
       });
   };
   return (
-    <div className="flex max-w-6xl mx-auto flex-col items-center justify-center py-2 min-h-screen">
+    <div className="flex max-w-7xl mx-auto flex-col items-center justify-center py-2 min-h-screen">
       <Header />
       <main className="flex flex-1 w-full flex-col items-center justify-center text-center px-4 background-gradient">
-        <div className="flex flex-col justify-center items-center gap-12 w-[40%]">
+        <div className="flex flex-col justify-center items-center gap-12 w-[50%]">
           <h1 className="mx-auto max-w-4xl font-display text-5xl font-bold tracking-normal text-gray-300 sm:text-7xl">
-            Signup
+            🎨 Paint Cost
           </h1>
           <input
             value={data.name}
@@ -62,4 +62,4 @@ const SignupPage = () => {
   );
 };
 
-export default SignupPage;
+export default PaintCost;

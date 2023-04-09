@@ -10,6 +10,7 @@ import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
 import PaintWall from './pages/PaintWall';
 import Generate from './pages/Generate';
+import PaintCost from './pages/PaintCost';
 
 const App = () => {
   return (
@@ -21,7 +22,8 @@ const App = () => {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/generate" element={<Generate />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path='/paint' element={<PaintWall />} />
+        <Route path="/paint" element={<PaintWall />} />
+        <Route path="/paint-cost" element={<PaintCost />} />
       </Routes>
     </div>
   );

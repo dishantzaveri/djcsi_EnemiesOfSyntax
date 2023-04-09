@@ -23,7 +23,7 @@ const ASIAN_PAINT_COLORS = '.cc-swatch-list.js-colorCatRevampCardList';
 const ASIAN_LOAD_MORE = '.ctaText.js-shadeRevamp-colorLoadMoreBtn';
 
 export default async function getAsianPaints() {
-  const browser = await puppeteer.launch({ headless: false });
+  const browser = await puppeteer.launch();
   //   const browser = await puppeteer.launch();
   const page = await browser.newPage();
 

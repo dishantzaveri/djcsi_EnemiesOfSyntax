@@ -14,6 +14,7 @@ import appendNewToName from '../utils/appendNewToName';
 import downloadPhoto from '../utils/downloadPhoto';
 import DropDown from '../components/DropDown';
 import { rooms, themes } from '../utils/dropdownTypes.js';
+import { GrFormClose } from 'react-icons/gr';
 
 // import { GenerateResponseData } from './api/generate';
 // import useSWR from 'swr';
@@ -38,6 +39,13 @@ const Generate = () => {
   const [photoName, setPhotoName] = useState();
   const [theme, setTheme] = useState('Modern');
   const [room, setRoom] = useState('Living Room');
+  const [file, setFile] = useState();
+  const [base64IMG, setBase64IMG] = useState();
+
+  const removeImage = () => {
+    setFile(null);
+    localStorage.removeItem('file');
+  };
 
   const fetcher = (url) => fetch(url).then((res) => res.json());
   // const { data, mutate } = useSWR('/api/remaining', fetcher);
@@ -65,6 +73,43 @@ const Generate = () => {
     }
   };
 
+  const convertToBase64 = () => {
+    const reader = new FileReader();
+
+    reader.readAsDataURL(file);
+
+    reader.onload = () => {
+      console.log('called: ', reader);
+      setBase64IMG(reader.result);
+    };
+  };
+
+  const handleFile = (e) => {
+    // setMessage('');
+    let file1 = e.target.files[0];
+    const fileType = file1['type'];
+    const validImageTypes = ['image/gif', 'image/jpeg', 'image/png', 'image/jpg'];
+
+    if (validImageTypes.includes(fileType)) {
+      setFile(file1);
+
+      console.log(file1);
+      const reader = new FileReader();
+
+      reader.readAsDataURL(file1);
+
+      reader.onload = () => {
+        console.log('called: ', reader.result);
+        setBase64IMG(reader.result);
+
+        localStorage.setItem('file', base64IMG);
+        generatePhoto();
+      };
+    } else {
+      setMessage('only images accepted');
+    }
+  };
+
   const UploadDropZone = () => (
     <UploadDropzone
       uploader={uploader}
@@ -73,6 +118,17 @@ const Generate = () => {
         if (file.length !== 0) {
           setPhotoName(file[0].originalFile.originalFileName);
           setOriginalPhoto(file[0].fileUrl.replace('raw', 'thumbnail'));
+          const reader = new FileReader();
+
+          // reader.readAsDataURL(file[0].originalFile);
+
+          // reader.onload = () => {
+          //   console.log('called: ', reader);
+          //   setBase64IMG(reader.result);
+          // };
+          console.log(file[0]);
+          console.log(file[0].fileUrl.replace('raw', 'thumbnail'));
+
           generatePhoto(file[0].fileUrl.replace('raw', 'thumbnail'));
         }
       }}
@@ -81,24 +137,55 @@ const Generate = () => {
     />
   );
 
-  async function generatePhoto(fileUrl) {
+  async function generatePhoto() {
     await new Promise((resolve) => setTimeout(resolve, 200));
     setLoading(true);
-    const res = await fetch('/api/generate', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ imageUrl: fileUrl, theme, room })
-    });
+    var myHeaders = new Headers();
+    myHeaders.append('authority', 'www.roomsgpt.io');
+    myHeaders.append('method', 'POST');
+    myHeaders.append('path', '/api/generate3');
+    myHeaders.append('scheme', 'https');
+    myHeaders.append('accept', ' */*');
+    myHeaders.append('accept-encoding', ' gzip, deflate, br');
+    myHeaders.append('accept-language', ' en-GB,en;q=0.6');
+    myHeaders.append('content-length', ' 327296');
+    myHeaders.append('content-type', ' application/json');
+    myHeaders.append('origin', ' https://www.roomsgpt.io');
+    myHeaders.append('referer', ' https://www.roomsgpt.io/roomgpt');
+    myHeaders.append('sec-ch-ua', ' "Brave";v="111", "Not(A:Brand";v="8", "Chromium";v="111"');
+    myHeaders.append('sec-ch-ua-mobile', ' ?0');
+    myHeaders.append('sec-ch-ua-platform', ' "Linux"');
+    myHeaders.append('sec-fetch-dest', ' empty');
+    myHeaders.append('sec-fetch-mode', ' cors');
+    myHeaders.append('sec-fetch-site', ' same-origin');
+    myHeaders.append('sec-gpc', ' 1');
+    myHeaders.append(
+      'user-agent',
+      ' Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36'
+    );
 
+    console.log(base64IMG);
+
+    var raw = JSON.stringify({ imageUrl: localStorage.getItem('file'), theme, room });
+
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+
+    const res = await fetch('https://www.roomsgpt.io/api/generate3', requestOptions);
+
+    console.log('res: ', res);
     let response = await res.json();
     if (res.status !== 200) {
       setError(response);
     } else {
-      mutate();
-      const rooms = JSON.parse(localStorage.getItem('rooms') || '[]') || [];
-      rooms.push(response.id);
+      // mutate();
+      console.log(response);
+      // const rooms = JSON.parse(localStorage.getItem('rooms') || '[]') || [];
+      // rooms.push(response.id);
       localStorage.setItem('rooms', JSON.stringify(rooms));
       setRestoredImage(response.generated);
     }
@@ -221,8 +308,41 @@ const Generate = () => {
                         <img src="/number-3-white.svg" width={30} height={30} alt="1 icon" />
                         <p className="text-left font-medium">Upload a picture of your room.</p>
                       </div>
+                    </div>{' '}
+                    <div className="flex gap-2">
+                      {file && (
+                        <div className="overflow-hidden relative">
+                          <GrFormClose
+                            onClick={() => removeImage()}
+                            className="absolute right-1 top-1 text-lg rounded-full bg-gray-200/25 hover:bg-gray-200/75 cursor-pointer"
+                          />
+                          <img className="h-full w-80 rounded-md" src={URL.createObjectURL(file)} />
+                        </div>
+                      )}
                     </div>
-                    <UploadDropZone />
+                    <div className="flex items-center justify-center w-64 h-52 pt-6">
+                      <label className="flex cursor-pointer flex-col w-full h-full border-2 rounded-md border-dashed hover:border-purple-300">
+                        <div className="flex flex-col items-center justify-center h-full">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="w-12 h-12 text-gray-400 group-hover:text-gray-600"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"
+                              clip-rule="evenodd"
+                            />
+                          </svg>
+                          <p className="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
+                            Select a photo
+                          </p>
+                        </div>
+                        <input type="file" onChange={(e) => handleFile(e)} className="opacity-0" />
+                      </label>
+                    </div>
+                    {/* <UploadDropZone /> */}
                   </>
                 )
                 // : (
