@@ -1,41 +1,43 @@
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { useState } from 'react';
+import { GrFormClose } from 'react-icons/gr';
+import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
 
-const Dashboard = () => {
+const PaintWall = () => {
   const navigate = useNavigate();
-//   const [file, setFile] = useState(null);
-//   const [message, setMessage] = useState();
-//   const handleFile = (e) => {
-//     setMessage('');
-//     let file1 = e.target.files[0];
-//     const fileType = file1['type'];
-//     const validImageTypes = ['image/gif', 'image/jpeg', 'image/png', 'image/jpg'];
-//     if (validImageTypes.includes(fileType)) {
-//       setFile(file1);
-//       console.log(file1);
-//       localStorage.setItem('file', URL.createObjectURL(file1));
-//     } else {
-//       setMessage('only images accepted');
-//     }
-//   };
+    const [file, setFile] = useState(null);
+    const handleFile = (e) => {
+      let file1 = e.target.files[0];
+      const fileType = file1['type'];
+      const validImageTypes = ['image/gif', 'image/jpeg', 'image/png', 'image/jpg'];
+      if (validImageTypes.includes(fileType)) {
+        setFile(file1);
+        console.log(file1);
+        localStorage.setItem('file', URL.createObjectURL(file1));
+      } else {
+        toast.warning('Please upload a valid image file (png or jpg)')
+      }
+    };
 
-//   const removeImage = () => {
-//     setFile(null);
-//     localStorage.removeItem('file');
-//   };
+    const removeImage = () => {
+      setFile(null);
+      localStorage.removeItem('file');
+    };
   return (
     <div className="flex max-w-6xl mx-auto flex-col items-center justify-center py-2 min-h-screen">
+        <ToastContainer />
       <Header />
       <main className="flex flex-1 w-full flex-col items-center justify-center text-center px-4 background-gradient">
         <h1 className="mx-auto max-w-4xl font-display text-5xl font-bold tracking-normal text-gray-300 sm:text-7xl my-12">
-          Choose method
+          Paint Wall
         </h1>
-        {/* <div class="rounded-lg hover:shadow-xl bg-purple-100/20 md:w-80 w-[360px] h-[320px]">
+        <div class="rounded-lg hover:shadow-xl bg-purple-100/20 md:w-80 w-[360px] h-[320px]">
                 <div class="p-4 h-full">
                     {!file &&
                         <div className="h-full">
-                            <span className="flex justify-center items-center text-[12px] text-red-500">{message}</span>
                             <div class="flex items-center justify-center w-full h-full">
                                 <label class="flex cursor-pointer flex-col w-full h-full border-2 rounded-md border-dashed hover:border-purple-300">
                                     <div class="flex flex-col items-center justify-center h-full">
@@ -63,7 +65,7 @@ const Dashboard = () => {
                         }
                     </div>
                 </div>
-            </div> */}
+            </div>
         <div className="flex w-full gap-8 my-12">
           <div className="px-20 rounded-xl border-2 border-purple-600 bg-purple-100/10 shadow-xl hover:scale-105 hover:shadow-purple-500/50 transform duration-300 shadow-purple-500/25 py-12 flex flex-col items-center gap-8 w-full">
             <h1 className="text-4xl text-purple-100 font-semibold">Paint selected walls</h1>
@@ -96,4 +98,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default PaintWall;

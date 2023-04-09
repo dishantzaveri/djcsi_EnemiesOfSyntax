@@ -6,6 +6,7 @@ import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
+import PaintWall from './pages/PaintWall';
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Route path='/login' element={<LoginPage />} />
         <Route path='/signup' element={<SignupPage />} />
         <Route path='/dashboard' element={<Dashboard />} />
+        <Route path='/paint' element={<PaintWall />} />
         <Route path='/profile' element={<Profile />} />
       </Routes>
     </div>

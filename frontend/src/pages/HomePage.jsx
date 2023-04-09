@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import SquigglyLines from '../components/SquigglyLines';
 import Footer from '../components/Footer';
+import {image} from '../constant'
 
 const HomePage = () => {
+  console.log(image);
   return (
     <div className="flex max-w-6xl mx-auto flex-col items-center justify-center py-2 min-h-screen">
       <Header />
@@ -60,6 +62,7 @@ const HomePage = () => {
           </div>
         </div>
       </main>
+      <img src={image} alt="" />
       <Footer />
     </div>
   );
