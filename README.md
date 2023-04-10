@@ -98,7 +98,9 @@ Optmized for gaming hence very useful and quick for the visualizations
 - [ ] Integration of other paint brands or scraping the data from the paints catalogue to display onsite
 
 <br />
+
 ---
+
 ## 🫂️ **Team Members**
 
 - 😴️ Kartik Jolapara
