@@ -86,6 +86,18 @@ Optmized for gaming hence very useful and quick for the visualizations
 
 ---
 
+## 🚀️ **Future Scope**
+- [ ] Virtual Reality along with Augmented Reality using Unity & other game engines
+- [ ] Recommendation System of Colors based on the environment of the room/contrast of the room
+- [ ] Improving accuracy, precision, and ability to approximate to the real world
+- [ ] Adding the ability to select and color different walls
+- [ ] Monetary Perspective
+- [ ] Adding props such as lighting on the ceiling or the shadows/effects of different lights
+- [ ] Able to drag and drop acutal props(furniture) from the sidebar to visualize the room properly
+- [ ] Integration of other paint brands or scraping the data from the paints catalogue to display onsite
+
+<br />
+---
 ## 🫂️ **Team Members**
 
 - 😴️ Kartik Jolapara
