@@ -1,7 +1,8 @@
 <div align='center'>
-    <h1><b>🛋️ decorGPT </b></h1>
+<!--     <h1><b>🛋️ decorGPT </b></h1> -->
     <img src='https://user-images.githubusercontent.com/42518907/230979376-c3f931de-d6f2-4cb7-8793-a8b5887a1f36.png' width='250' />
-    <p>Product made in @Codeshastra 9.0</p>
+    <br />
+    <p>Product made in <strong>@Codeshastra 9.0</strong></p>
 
 </div>
 
