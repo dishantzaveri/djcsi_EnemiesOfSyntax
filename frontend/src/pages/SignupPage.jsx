@@ -14,14 +14,12 @@ const SignupPage = () => {
   });
   const register = () => {
     console.log(data);
-    axios
-      .post('https://9aa7-2402-3a80-1863-57f8-5466-8afa-78aa-48d4.ngrok-free.app/auth/register', data)
-      .then((res) => {
-        navigate('/login');
-      });
+    axios.post('http://localhost:3001/auth/register', data).then((res) => {
+      navigate('/login');
+    });
   };
   return (
-    <div className="flex max-w-6xl mx-auto flex-col items-center justify-center py-2 min-h-screen">
+    <div className="flex w-full flex-col items-center justify-center py-2 min-h-screen">
       <Header />
       <main className="flex flex-1 w-full flex-col items-center justify-center text-center px-4 background-gradient">
         <div className="flex flex-col justify-center items-center gap-12 w-[40%]">

@@ -6,7 +6,7 @@ export const CompareSlider = ({ original, restored }) => {
       itemOne={<ReactCompareSliderImage src={original} alt="original photo" />}
       itemTwo={<ReactCompareSliderImage src={restored} alt="generated photo" />}
       portrait
-      className="flex w-[600px] mt-5 h-96"
+      className="flex w-[600px] mt-5 h-auto"
     />
   );
 };

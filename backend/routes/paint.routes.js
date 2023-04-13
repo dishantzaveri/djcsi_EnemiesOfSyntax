@@ -3,7 +3,7 @@ import { getAsianPaintsController, getAsianPaintsCost } from '../controllers/pai
 
 const router = express.Router();
 
-router.get('/asian', getAsianPaintsCost);
+router.post('/asian', getAsianPaintsCost);
 router.get('/asian-paints', getAsianPaintsController);
 
 export default router;

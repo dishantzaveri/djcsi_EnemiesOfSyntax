@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
+import logo from '../../assets/asian-paints.png'
 
 export default function Footer() {
   return (
     <footer className="text-center h-16 sm:h-20 w-full sm:pt-2 pt-4 border-t mt-5 flex sm:flex-row flex-col justify-between items-center px-3 space-y-3 sm:mb-0 mb-3 border-gray-500">
-      <div className="text-gray-500">
+      <div className="text-gray-500 flex gap-4">
         <span className="text-gray-500"></span> <span className="text-purple-600">decorGPT</span> Made by Enemies of
-        Syntax
+        Syntax and powered by <img className='h-6' src={logo} alt="" />
       </div>
       <div className="flex space-x-4 pb-4 sm:pb-0">
         <a href="https://github.com/" className="group">

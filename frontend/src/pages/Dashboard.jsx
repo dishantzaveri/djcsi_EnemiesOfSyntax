@@ -25,7 +25,7 @@ const Dashboard = () => {
 //     localStorage.removeItem('file');
 //   };
   return (
-    <div className="flex max-w-6xl mx-auto flex-col items-center justify-center py-2 min-h-screen">
+    <div className="flex w-full flex-col items-center justify-center py-2 min-h-screen">
       <Header />
       <main className="flex flex-1 w-full flex-col items-center justify-center text-center px-4 background-gradient">
         <h1 className="mx-auto max-w-4xl font-display text-5xl font-bold tracking-normal text-gray-300 sm:text-7xl my-12">

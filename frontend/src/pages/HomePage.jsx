@@ -9,7 +9,7 @@ import {image} from '../constant'
 const HomePage = () => {
   console.log(image);
   return (
-    <div className="flex max-w-6xl mx-auto flex-col items-center justify-center py-2 min-h-screen">
+    <div className="flex w-full flex-col items-center justify-center py-2 min-h-screen">
       <Header />
       <main className="flex flex-1 w-full flex-col items-center justify-center text-center px-4 sm:mt-20 mt-20 background-gradient">
         <div className="my-12">
@@ -62,7 +62,7 @@ const HomePage = () => {
           </div>
         </div>
       </main>
-      <img src={image} alt="" />
+      {/* <img src={image} alt="" /> */}
       <Footer />
     </div>
   );

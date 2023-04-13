@@ -21,7 +21,7 @@ const params = {
 };
 
 export default async function asianPaintsCalculator(typeOfProject, paintSpacing, homeSize, carpetArea) {
-  const browser = await puppeteer.launch({ headless: false });
+  const browser = await puppeteer.launch({ headless: true });
   //   const browser = await puppeteer.launch();
   const page = await browser.newPage();
 

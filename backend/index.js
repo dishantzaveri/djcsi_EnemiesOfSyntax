@@ -22,6 +22,7 @@ import { users, posts } from './data/index.js';
 import fetch from 'node-fetch';
 import { addGenImages, addRefImage } from './controllers/image.controller.js';
 import axios from 'axios';
+import Paint from './models/Paint.js';
 
 const headers = {
   Accept: 'application/json',
@@ -39,7 +40,7 @@ app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: 'cross-origin' }));
 app.use(morgan('common'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 // app.use(express.bodyParser());
 // app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
@@ -115,6 +116,10 @@ app.use('/users', userRoutes);
 app.use('/posts', postRoutes);
 app.use('/host', hostRoutes);
 app.use('/paint', paintRoutes);
+app.use('/getPaints', async (req, res) => {
+  const result = await Paint.find();
+  res.status(200).send(result);
+});
 
 const getRoom = async (room) => {
   try {
