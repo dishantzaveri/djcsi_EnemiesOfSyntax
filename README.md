@@ -13,16 +13,6 @@
 ## 🥳️ **Winner in Codeshastra 9.0**
 
 
-## 💡️ **why decorGPT?**
-
-
-- A one-stop shop for you to visualize, plan and get inspiration for all your home decor needs!
-- A technology that uses the existing environment and overlays a computer-generated image to spe
-- Sense of presence and Interactive in real world.
-- Blends real and virtual, in real environment.
-- Utilizes Here Location Services and Mobile SDKs.
-- Offers guided tours, historical information, and interactive maps for city exploration.
-
 <br />
 
 
